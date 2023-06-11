@@ -2,6 +2,11 @@
 
 #include <vector>
 
+struct ExcecaoCelulaInvalida {
+  int linha;  
+  int coluna;  
+};
+
 // Implementa o Jogo da Vida de John Conway.
 // https://pt.wikipedia.org/wiki/Jogo_da_vida
 class JogoDaVida {
@@ -17,20 +22,19 @@ class JogoDaVida {
   int colunas() {return vivas_[0].size();};
 
   // Retorna o estado da célula [i, j].
-  // Pré-condição: 0 <= i < #linhas e 0 <= j < #colunas
   bool viva(int i, int j);
 
   // Alteram o estado célula [i, j].
-  // Pré-condição: 0 <= i < #linhas e 0 <= j < #colunas
   void Matar(int i, int j);
   void Reviver(int i, int j);
 
   // Executa a próxima iteração do jogo da vida.
-  // Ou seja, altera os estado da matriz,
-  // de forma que ela fique igual ao da próxima iteração.
   void ExecutarProximaIteracao();
+
+  // Executa n iterações do jogo da vida.
+  void Executar(int n);
  private:
-   // Conta o número de vizinhas vivas da célula [x, y].
+  // Conta o número de vizinhas vivas da célula [x, y].
   int NumeroDeVizinhasVivas(int x, int y);
 
   // Armazena o estado das células.
