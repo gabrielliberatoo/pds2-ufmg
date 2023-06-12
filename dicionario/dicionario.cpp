@@ -26,7 +26,7 @@ string Dicionario::menor(){
         }
         return menor->chave;
     }
-    return "";
+    else{throw excecaoDicionarioVazio();}
 }
 
 string Dicionario::valor(string chave){
@@ -37,7 +37,7 @@ string Dicionario::valor(string chave){
             }
         }
     }
-    return "";
+    else{throw naoContemChave(chave);}
 }
 
 void Dicionario::Inserir(string chave, string valor){
@@ -48,6 +48,7 @@ void Dicionario::Inserir(string chave, string valor){
 
         elementos_.push_back(novo);
     }
+    else{throw contemChave(chave);}
 }
 
 void Dicionario::Remover(string chave){
@@ -59,6 +60,7 @@ void Dicionario::Remover(string chave){
             }
         }
     }
+    else{throw naoContemChave(chave);}
 }
 
 void Dicionario::Alterar(string chave, string valor){
@@ -70,6 +72,30 @@ void Dicionario::Alterar(string chave, string valor){
             }
         }
     }
+    else{throw naoContemChave(chave);}
 }
 
 Dicionario::~Dicionario(){}
+
+excecaoDicionarioVazio::excecaoDicionarioVazio(){}
+
+void excecaoDicionarioVazio::msg1(){
+     cout << "Não foi possível realizar a operação: Dicionário vazio" << endl;
+}
+
+naoContemChave::naoContemChave(string chave1){
+    chave = chave1;
+}
+
+void naoContemChave::msg2(string chave){
+    cout << "Não foi possível realizar a operação: A chave "  << chave << " não está no dicionário" << endl;
+
+}
+
+contemChave::contemChave(string chave1){
+    chave = chave1;
+}
+
+void contemChave::msg3(string chave){
+    cout << "Não foi possível realizar a operação: A chave " << chave << " já está no dicionário" << endl;  
+}   

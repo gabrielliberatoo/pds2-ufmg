@@ -3,9 +3,48 @@
 
 #include <list>
 #include <string>
+#include <iostream>
+#include <exception>
 
 using std::list;
 using std::string;
+using namespace std;
+
+// Exceção que indica que o dicionário está vazio.
+class excecaoDicionarioVazio{
+   public:
+   excecaoDicionarioVazio();
+   void msg1();
+   private:
+   string frase;
+};
+
+/*class DicionarioVazio : public std::exception {
+public:
+    const char* what() const noexcept override {
+        return "Dicionário vazio.";
+    }
+};*/
+
+// Exceção que indica que uma determinada chave não está no dicionário.
+class naoContemChave{
+    public:
+    naoContemChave(string chavechave);
+    void msg2(string chave);
+
+    private:
+    string chave;
+};
+
+// Exceção que indica que uma determinada chave já se encontra no dicionário.
+class contemChave{
+    public:
+    contemChave(string chave);
+    void msg3(string chave);
+
+    private:
+    string chave;
+};
 
 // Implementa um dicionário que mapeia uma chave (do tipo string)
 // a um valor (também do tipo string).
